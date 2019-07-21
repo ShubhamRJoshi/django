@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home-section1-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+{% endblock head %}
+
+
+{% block body %}
+
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock header %}
+
+    {% block content %}
+        {% include 'home-section1-carousel.html' %}
+    {% endblock content %}
+
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock footer %}
+
+    {% block footscripts %}
+    {% endblock footscripts %}
+
+{% endblock body %}
