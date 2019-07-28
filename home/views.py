@@ -1,18 +1,18 @@
 from django.shortcuts import render
-from django.conf import settings
+import json
+import requests
 
 
 # Create your views here.
 
 def home(request):
-
-    your_media_root = settings.MEDIA_ROOT
-
-    # name = file_path.file.name
-    # url = file_path.file.url
-    # path = file_path.file.path
-    print(your_media_root)
-    # print(name)
-    # print(url)
-    # print(path)
-    return render(request, 'home.html')
+    url = 'http://localhost:8000/u_api/projects'
+    queryset_list = requests.get(url)
+    project_doc = json.loads(queryset_list.text)
+    project_data = []
+    for k, v in project_doc['projects'].items():
+        project_data.append(v)
+    context = {
+        'project_list': project_data,
+    }
+    return render(request, 'home.html', context)
